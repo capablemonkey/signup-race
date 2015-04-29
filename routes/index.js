@@ -92,7 +92,7 @@ router.get('/finishChallenge', function(req, res) {
       notes: 'thanks for taking the dwolla onboarding challenge!',
       assumeCosts: true
     }, function(err, txid) {
-      if (err) { return txid.render('error', err); }
+      if (err) { return res.render('error', err); }
 
       dwolla.transactionById(txid, function(err, data) {
         if (err) { return txid.render('error', err); }
