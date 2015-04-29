@@ -22,8 +22,7 @@ $( document ).ready(function() {
   });
 
   window.addEventListener('message', function(event) {
-    alert(event.data);
-    location = '/finishChallenge?money=' + money.toString();
+    location = '/finishChallenge';
     popup.close();
   }, false);
 
