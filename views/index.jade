@@ -1,8 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p(id='money') $5000
+  div(class='container')
+    div(id='moneyBox') $5000.00
 
-  a= challengeId
-  a(href='#', data-url=oauthURL, id='oAuthBeginLink') Authorize with Dwolla
+    div(id='mainbox')
+      p(class='leadHeader') Think you're fast?
+      p(class='leadCopy') User onboarding is important.  We get it.  Introducing Dwolla Direct.  See how quickly you can get through our new account creation flow.  The faster you finish, the more money you’ll get. *
+
+      a= challengeId
+      a(href='#', data-url=oauthURL, id='oAuthBeginLink')
+        div(class='button') BEGIN
