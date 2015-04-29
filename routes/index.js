@@ -115,6 +115,10 @@ router.get('/finishChallenge', function(req, res) {
     });
   })
 
+  // TODO: promisify
+  // TODO: save time, calculate money based on elapsed time 
+  // TODO: build leaderboard, calculate rank on leaderboard
+
   .error(function(err) { res.render('error', err); });
 });
 
