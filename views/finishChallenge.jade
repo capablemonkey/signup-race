@@ -1,4 +1,22 @@
-p foo
-p= challenge
-p= amount
-p= transaction
+extends layout
+
+block content
+  div(class='container')
+    div(id='mainbox')
+      p(class='winHeader') Nice job!
+
+      div(class='moneytimeBox')
+        div(class='timeBoxWin') 01:21.348
+          div(class='timeLabel') time elapsed
+
+        div(id='moneyBoxWin') $5000.00
+
+      p(class='leadCopy') Your generous reward's been sent to your new account, John Doe.
+
+      p > boast on twitter
+      p > learn more about the Dwolla API
+
+      a(href='/')
+        div(class='button') again?
+
+    
