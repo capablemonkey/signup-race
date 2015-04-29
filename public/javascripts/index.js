@@ -19,11 +19,18 @@ $( document ).ready(function() {
       money -= .83;
       $('#moneyBox').html('$' + money.toFixed(2));
     }, 100);
+
+    // move things around:
+    $('#mainbox').css('display', 'none');
+    $('.timeBox').css('display', 'block');
+    $('.container').css('position', 'absolute');
+    $('.container').css('width', '342px');
   });
 
   window.addEventListener('message', function(event) {
     location = '/finishChallenge?challengeId=' + event.data.challengeId;
     popup.close();
+
   }, false);
 
 });
