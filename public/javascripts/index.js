@@ -1,9 +1,7 @@
 $( document ).ready(function() {
-
   var money = 5000.00;
   var popup;
-
-  var timeMS = 0;
+  var timer;
 
   $('#moneyBox').html('$' + money.toFixed(2));
 
@@ -22,8 +20,8 @@ $( document ).ready(function() {
       $('#moneyBox').html('$' + money.toFixed(2));
     }, 100);
 
-    var k = new timer($('#time'), 115);
-    k.start();
+    timer = new Timer($('#time'), 115);
+    timer.start();
 
     // move things around:
     $('#mainbox').css('display', 'none');
@@ -40,7 +38,7 @@ $( document ).ready(function() {
 
 });
 
-function timer(element, interval) {
+function Timer(element, interval) {
   this.timeMS = 0;
   this.intervalID = null;
 
@@ -55,15 +53,13 @@ function timer(element, interval) {
   };
 
   this.stop = function() {
-    clearInterval(intervalID);
+    clearInterval(this.intervalID);
   };
 
   function formatTime(ms) {
     min = Math.floor(ms / (1000 * 60));
     sec = Math.floor(ms / 1000);
     mils = ms % 1000;
-
-    console.log(ms);
 
     return min + ':' + pad(sec, 2) + ':' + pad(mils, 3);
   }
