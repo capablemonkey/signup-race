@@ -94,19 +94,24 @@ router.get('/finishChallenge', function(req, res) {
     }, function(err, txid) {
       if (err) { return txid.render('error', err); }
 
-      // record payment
-      payments.insert({
-        challengeId: challengeId,
-        amount: c.money,
-        destinationId: c.accountInfo.Id
-      });
+      dwolla.transactionById(txid, function(err, data) {
+        if (err) { return txid.render('error', err); }
 
-      res.render('finishChallenge', {
-        challengeId: challengeId,
-        challenge: JSON.stringify(c),
-        transactionId: txid
-      });
+        // record payment
+        payments.insert({
+          challengeId: challengeId,
+          amount: c.money,
+          destinationId: c.accountInfo.Id,
+          transaction: data
+        });
 
+        res.render('finishChallenge', {
+          challengeId: challengeId,
+          challenge: JSON.stringify(c),
+          transaction: JSON.stringify(data)
+        });
+
+      });
     });
   })
 
