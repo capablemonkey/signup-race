@@ -2,4 +2,6 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p(id='money') $5000
+
+  a(href='#', data-url=oauthURL, id='oAuthBeginLink') Authorize with Dwolla
