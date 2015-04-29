@@ -3,7 +3,7 @@ $( document ).ready(function() {
   var money = 5000.00;
   var popup;
 
-  $('#money').html('$' + money.toString());
+  $('#moneyBox').html('$' + money.toFixed(2));
 
   $('#oAuthBeginLink').on('click', function(e) {
     e.preventDefault();
@@ -17,7 +17,7 @@ $( document ).ready(function() {
 
     setInterval(function() {
       money -= .83;
-      $('#money').html('$' + money.toFixed(2));
+      $('#moneyBox').html('$' + money.toFixed(2));
     }, 100);
   });
 
