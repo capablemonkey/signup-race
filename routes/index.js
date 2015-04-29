@@ -56,7 +56,6 @@ router.get('/oauthReturn', function(req, res) {
         // TODO: check if accountid already exists, means already tried once
         // TODO: check if timeBegin already filled, means re-doing old session
 
-
         challenges.update({id: challengeId}, { $set: {
           timeEnd: timeEnd,
           timeElapsed: timeEnd - doc.timeCreated,  // TODO: replace with TimeBegin
@@ -79,16 +78,35 @@ router.get('/oauthReturn', function(req, res) {
 
 router.get('/finishChallenge', function(req, res) {
   var challenges = req.db.get('challenge');
+  var payments = req.db.get('payment');
   var challengeId = req.query.challengeId;
 
   challenges.findOne({ id: challengeId })
 
-  .success(function(doc) {
+  .success(function(c) {
+    // TODO: make sure reward wasn't already sent for this challenge
 
+    // send reward
+    dwolla.setToken(config.dwolla.senderAccessToken);
+    dwolla.send(config.dwolla.senderPIN, c.accountInfo.Id, c.money, {
+      notes: 'thanks for taking the dwolla onboarding challenge!',
+      assumeCosts: true
+    }, function(err, txid) {
+      if (err) { return txid.render('error', err); }
 
-    res.render('finishChallenge', {
-      challengeId: challengeId,
-      doc: JSON.stringify(doc)
+      // record payment
+      payments.insert({
+        challengeId: challengeId,
+        amount: c.money,
+        destinationId: c.accountInfo.Id
+      });
+
+      res.render('finishChallenge', {
+        challengeId: challengeId,
+        challenge: JSON.stringify(c),
+        transactionId: txid
+      });
+
     });
   })
 
