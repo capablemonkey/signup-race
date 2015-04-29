@@ -3,6 +3,8 @@ $( document ).ready(function() {
   var money = 5000.00;
   var popup;
 
+  var timeMS = 0;
+
   $('#moneyBox').html('$' + money.toFixed(2));
 
   $('#oAuthBeginLink').on('click', function(e) {
@@ -20,6 +22,9 @@ $( document ).ready(function() {
       $('#moneyBox').html('$' + money.toFixed(2));
     }, 100);
 
+    var k = new timer($('#time'), 115);
+    k.start();
+
     // move things around:
     $('#mainbox').css('display', 'none');
     $('.timeBox').css('display', 'block');
@@ -34,3 +39,37 @@ $( document ).ready(function() {
   }, false);
 
 });
+
+function timer(element, interval) {
+  this.timeMS = 0;
+  this.intervalID = null;
+
+  interval = interval || 115;
+
+  this.start = function() {
+    that = this;
+    this.intervalID = setInterval(function() {
+      that.timeMS += interval;
+      element.html(formatTime(that.timeMS));
+    }, interval);
+  };
+
+  this.stop = function() {
+    clearInterval(intervalID);
+  };
+
+  function formatTime(ms) {
+    min = Math.floor(ms / (1000 * 60));
+    sec = Math.floor(ms / 1000);
+    mils = ms % 1000;
+
+    console.log(ms);
+
+    return min + ':' + pad(sec, 2) + ':' + pad(mils, 3);
+  }
+
+  function pad(n, width) {
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(0) + n;
+  }
+}
