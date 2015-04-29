@@ -4,8 +4,9 @@ var router = express.Router();
 var uuid = require('uuid');
 var util = require('util');
 
-var dwolla = require('dwolla-node')('eTCy1flPfcjS8K+p1hAkJbCPCyI1T7crvFs+iegs7CwfRz8kZs', 'pbqq8QfDdQsA6Nf1mhKXkcVnT4vQLC+/YF9vdca6gGBhF8ue7W');
-var redirect_uri = 'http://127.0.0.1:3000/oauthReturn';
+var config = require('../config.js');
+var dwolla = require('dwolla-node')(config.dwolla.client_id, config.dwolla.client_secret);
+var redirect_uri = config.host + '/oauthReturn';
 dwolla.sandbox = true;
 
 /* GET home page. */
@@ -60,6 +61,7 @@ router.get('/oauthReturn', function(req, res) {
           timeEnd: timeEnd,
           timeElapsed: timeEnd - doc.timeCreated,  // TODO: replace with TimeBegin
           accessToken: auth.access_token,
+          money: 4595,
           accountInfo: data
         }})
         .success(function(doc) {
@@ -82,6 +84,8 @@ router.get('/finishChallenge', function(req, res) {
   challenges.findOne({ id: challengeId })
 
   .success(function(doc) {
+
+
     res.render('finishChallenge', {
       challengeId: challengeId,
       doc: JSON.stringify(doc)
