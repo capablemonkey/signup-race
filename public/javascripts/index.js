@@ -22,7 +22,7 @@ $( document ).ready(function() {
   });
 
   window.addEventListener('message', function(event) {
-    location = '/finishChallenge';
+    location = '/finishChallenge?challengeId=' + event.data.challengeId;
     popup.close();
   }, false);
 
