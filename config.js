@@ -1,10 +1,10 @@
 module.exports = {
   // dwolla sandbox credentials:
   dwolla: {
-    client_id: 'eTCy1flPfcjS8K+p1hAkJbCPCyI1T7crvFs+iegs7CwfRz8kZs',
-    client_secret: 'pbqq8QfDdQsA6Nf1mhKXkcVnT4vQLC+/YF9vdca6gGBhF8ue7W',
-    senderAccessToken: '1VD7BsQDYIGN1uTmcz2tRDTLXlE61DgU3ljvwQTxlpGSXdfwCe',
-    senderPIN: 9999
+    client_id: process.env.DWOLLA_CLIENT_ID || '',
+    client_secret: process.env.DWOLLA_CLIENT_SECRET || '',
+    senderAccessToken: process.env.DWOLLA_ACCESS_TOKEN || '',
+    senderPIN: process.env.DWOLLA_PIN || ''
   },
   mongoDB: {
     connectionURL: process.env.MONGOLAB_URI || 'localhost/dwolla-race',
