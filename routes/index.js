@@ -84,6 +84,8 @@ router.get('/finishChallenge', function(req, res) {
   var money = req.query.money;
   var time = req.query.time;
 
+  if (money > 5000) { return res.send("ooooh, someone's sly!"); }
+
   challenges.findOne({ id: challengeId })
 
   .success(function(c) {
@@ -91,7 +93,7 @@ router.get('/finishChallenge', function(req, res) {
 
     // send reward
     dwolla.setToken(config.dwolla.senderAccessToken);
-    dwolla.send(config.dwolla.senderPIN, c.accountInfo.Id, c.money, {
+    dwolla.send(config.dwolla.senderPIN, c.accountInfo.Id, money, {
       notes: 'thanks for taking the dwolla onboarding challenge!',
       assumeCosts: true
     }, function(err, txid) {
@@ -111,7 +113,7 @@ router.get('/finishChallenge', function(req, res) {
         res.render('finishChallenge', {
           money: money,
           time: time,
-          name: 'John Doe',
+          name: c.accountInfo.Name,
           transaction: JSON.stringify(data, null, '\t')
         });
 

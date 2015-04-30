@@ -41,6 +41,9 @@ a {
   background-color: rgba(0,12,24,1);
   padding: 20px;
   color: green;
+  border: 1px solid #676565;
+  border-radius: 8px;
+  overflow-x:auto
 }
 
 .winHeader {
