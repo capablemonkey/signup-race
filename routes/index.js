@@ -112,7 +112,7 @@ router.get('/finishChallenge', function(req, res) {
 
         res.render('finishChallenge', {
           money: money,
-          time: time,
+          time: formatTimeWords(time),
           name: c.accountInfo.Name,
           transaction: JSON.stringify(data, null, '\t')
         });
@@ -127,6 +127,13 @@ router.get('/finishChallenge', function(req, res) {
 
   .error(function(err) { res.render('error', err); });
 });
+
+function formatTimeWords(ms) {
+  min = Math.floor(ms / (1000 * 60));
+  sec = Math.floor((ms / 1000) % 60);
+
+  return (min > 0 ? min + ' minutes, ': '') + sec + ' seconds';
+}
 
 
 module.exports = router;

@@ -35,17 +35,6 @@ $( document ).ready(function() {
     popup.close();
 
   }, false);
-
-  // finishChallenge:
-
-  // format time:
-  $('#time').text(formatTimeWords($('#time').text()));
-
-  $('#receiptOpen').click(function(e) {
-    e.preventDefault();
-    console.log('foo')
-    $('.receipt').slideToggle();
-  });
 });
 
 function Timer(element, interval) {
