@@ -15,10 +15,19 @@ block content
 
       p(class='leadCopy') Your generous reward's been sent to your new account, #{name}.
 
-      p > boast on twitter
-      p > learn more about the Dwolla API
+      div 
+        h4 so what now?
+        p > boast on twitter
+          | <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dwolla.com" data-text="I just won $#{money} from the #DwollaRace" data-via="capable_monkey">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        p 
+          a(href="https://developers.dwolla.com", target="_blank")> learn more about the Dwolla API
+        p
+          a(id="receiptOpen", href="#") > view your receipt
+
+        div(class='receipt')
+          pre= transaction
 
       a(href='/')
         div(class='button') again?
 
-    
+

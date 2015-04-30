@@ -81,6 +81,9 @@ router.get('/finishChallenge', function(req, res) {
   var payments = req.db.get('payment');
   var challengeId = req.query.challengeId;
 
+  var money = req.query.money;
+  var time = req.query.time;
+
   challenges.findOne({ id: challengeId })
 
   .success(function(c) {
@@ -106,9 +109,10 @@ router.get('/finishChallenge', function(req, res) {
         });
 
         res.render('finishChallenge', {
-          challengeId: challengeId,
-          challenge: JSON.stringify(c),
-          transaction: JSON.stringify(data)
+          money: money,
+          time: time,
+          name: 'John Doe',
+          transaction: JSON.stringify(data, null, '\t')
         });
 
       });

@@ -38,8 +38,14 @@ $( document ).ready(function() {
 
   // finishChallenge:
 
-  $('#time').text(formatTime($('#time').text()))
+  // format time:
+  $('#time').text(formatTime($('#time').text()));
 
+  $('#receiptOpen').click(function(e) {
+    e.preventDefault();
+    console.log('foo')
+    $('.receipt').slideToggle();
+  });
 });
 
 function Timer(element, interval) {

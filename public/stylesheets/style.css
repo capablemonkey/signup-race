@@ -32,6 +32,17 @@ a {
   width: 100%;
 }
 
+.receipt {
+  display: none;
+  margin: 20px;
+}
+
+.receipt pre {
+  background-color: rgba(0,12,24,1);
+  padding: 20px;
+  color: green;
+}
+
 .winHeader {
   /* Nice job!: */
   font-family: Roboto-Regular;
