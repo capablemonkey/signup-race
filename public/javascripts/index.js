@@ -2,6 +2,7 @@ $( document ).ready(function() {
   var money = 5000.00;
   var popup;
   var timer;
+  var moneyInterval;
 
   $('#moneyBox').html('$' + money.toFixed(2));
 
@@ -15,7 +16,7 @@ $( document ).ready(function() {
 
     popup = window.open($(this).data('url'), 'Dwolla OAuth', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 
-    setInterval(function() {
+    moneyInterval = setInterval(function() {
       money -= .83;
       $('#moneyBox').html('$' + money.toFixed(2));
     }, 100);
@@ -33,6 +34,8 @@ $( document ).ready(function() {
   window.addEventListener('message', function(event) {
     location = '/finishChallenge?challengeId=' + event.data.challengeId + '&money=' + money.toFixed(2) + '&time=' + timer.timeMS;
     popup.close();
+    timer.stop();
+    clearInterval(moneyInterval);
 
   }, false);
 });
