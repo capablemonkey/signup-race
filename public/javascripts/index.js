@@ -39,7 +39,7 @@ $( document ).ready(function() {
   // finishChallenge:
 
   // format time:
-  $('#time').text(formatTime($('#time').text()));
+  $('#time').text(formatTimeWords($('#time').text()));
 
   $('#receiptOpen').click(function(e) {
     e.preventDefault();
@@ -65,6 +65,13 @@ function Timer(element, interval) {
   this.stop = function() {
     clearInterval(this.intervalID);
   };
+}
+
+function formatTimeWords(ms) {
+  min = Math.floor(ms / (1000 * 60));
+  sec = Math.floor((ms / 1000) % 60);
+
+  return (min > 0 ? min + ' minutes, ': '') + sec + ' seconds';
 }
 
 function formatTime(ms) {
