@@ -31,10 +31,14 @@ $( document ).ready(function() {
   });
 
   window.addEventListener('message', function(event) {
-    location = '/finishChallenge?challengeId=' + event.data.challengeId;
+    location = '/finishChallenge?challengeId=' + event.data.challengeId + '&money=' + money.toFixed(2) + '&time=' + timer.timeMS;
     popup.close();
 
   }, false);
+
+  // finishChallenge:
+
+  $('#time').text(formatTime($('#time').text()))
 
 });
 
@@ -55,17 +59,17 @@ function Timer(element, interval) {
   this.stop = function() {
     clearInterval(this.intervalID);
   };
+}
 
-  function formatTime(ms) {
-    min = Math.floor(ms / (1000 * 60));
-    sec = Math.floor(ms / 1000);
-    mils = ms % 1000;
+function formatTime(ms) {
+  min = Math.floor(ms / (1000 * 60));
+  sec = Math.floor(ms / 1000);
+  mils = ms % 1000;
 
-    return min + ':' + pad(sec, 2) + ':' + pad(mils, 3);
-  }
+  return min + ':' + pad(sec, 2) + '.' + pad(mils, 3);
+}
 
-  function pad(n, width) {
-    n = n + '';
-    return n.length >= width ? n : new Array(width - n.length + 1).join(0) + n;
-  }
+function pad(n, width) {
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(0) + n;
 }

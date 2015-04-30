@@ -18,6 +18,11 @@ a {
   position: relative;
 }
 
+.containerWin {
+  margin-top: 100px;
+  position: relative;
+}
+
 .asterisk {
   color: #DB0303;
 }
