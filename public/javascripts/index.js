@@ -69,7 +69,7 @@ function Timer(element, interval) {
 
 function formatTime(ms) {
   min = Math.floor(ms / (1000 * 60));
-  sec = Math.floor(ms / 1000);
+  sec = Math.floor((ms / 1000) % 60);
   mils = ms % 1000;
 
   return min + ':' + pad(sec, 2) + '.' + pad(mils, 3);
