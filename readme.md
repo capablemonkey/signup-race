@@ -1,6 +1,8 @@
 # dwolla onboarding race
 
-A little challenge to see how quickly you can create a new Dwolla Direct account.
+A little challenge to see how quickly you can create a new Dwolla Direct account, via the new OAuth account creation flow.
+
+try it out: [https://registerrace.herokuapp.com](https://registerrace.herokuapp.com)
 
 ### set up
 
@@ -8,7 +10,7 @@ A little challenge to see how quickly you can create a new Dwolla Direct account
 2. you'll need a mongodb server
 3. set the following environment variables:
 ```
-BASE_URL:             https://registerrace.herokuapp.com
+HOST_URL:             https://registerrace.herokuapp.com
 DWOLLA_ACCESS_TOKEN:  foo
 DWOLLA_CLIENT_ID:     foo
 DWOLLA_CLIENT_SECRET: foo
